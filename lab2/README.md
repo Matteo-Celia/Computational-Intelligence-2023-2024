@@ -11,7 +11,7 @@ Let X be the nim-sum of all the heap sizes. Find a heap where the nim-sum of X a
 
 For misère game the strategy changes a bit only in the end-game.
 
-## Evolutionary Strategy
+## Evolved Agent
 
 The evolutionary strategy implemented is a (1 + λ) ES with self-adaptation of the parameter sigma which drives the normal gaussian distribution used to tweak the list of float values (weights) hence using gaussian mutation.
 
@@ -28,3 +28,5 @@ The adaptive rate is defined as 1/100 of the total number of generations. Every 
 - If the number of offspring with better fitness than their parent in the last 100 generations is lower than 1/5 decrease the variance (hence favouring exploitation over exploration).
 
 - If the number of offspring with better fitness than their parent in the last 100 generations is greater than 1/5 increase the variance (hence favouring exploration over exploitation).
+
+Once the best set of weights is obtained at the end of the training, the evolved agent is tested by a sort of weighted voting system: the move selected from the evolved agent is the one with the largest sum of weights of the strategies that selected that move. Note: the weights might be negative, hence before using them for the voting system they are shifted to make them greater than or equal than zero.
